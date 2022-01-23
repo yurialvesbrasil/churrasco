@@ -11,7 +11,7 @@ describe("Create User Controller", () => {
     const response = await request(app).post("/users").send({
       email: "testIntegration@test.com.br",
       name: "Test Integration",
-      password: "Yu12345*",
+      password: "Yu23145*",
     });
 
     expect(response.status).toBe(200);
@@ -34,7 +34,7 @@ describe("Create User Controller", () => {
     expect(response.status).toBe(400);
   });
 
-  it("Shouldn't be able to create a user with a weak password",async () => {
+  it("Shouldn't be able to create a user with a weak password", async () => {
     const response = await request(app).post("/users").send({
       email: "testIntegration2@test.com.br",
       name: "Test Integration2",

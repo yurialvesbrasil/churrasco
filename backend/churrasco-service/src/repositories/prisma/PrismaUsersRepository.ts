@@ -3,14 +3,14 @@ import { User } from "../../entities/User";
 import { IUsersRepository } from "../IUsersRepositories";
 
 class PrismaUsersRepository implements IUsersRepository {
-  async exists(email: string): Promise<boolean> {
+  async exists(email: string): Promise<User | null> {
     const user = await prisma.user.findUnique({
       where: {
         email,
       },
     });
 
-    return !!user;
+    return !!user ? user : null;
   }
 
   async create({ name, email, password }: User): Promise<User> {

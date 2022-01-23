@@ -1,14 +1,20 @@
 import express, { NextFunction, Response, Request } from "express";
 import "express-async-errors";
 import { routes } from "./routes/routes";
-
+import compression from 'compression';
 import "dotenv/config";
+import helmet from "helmet";
 
 const app = express();
 
 app.use(express.json());
 
+app.use(compression());
+
 app.use(routes);
+
+app.use(helmet());
+app.disable('x-powered-by');
 
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
