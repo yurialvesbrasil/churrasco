@@ -4,6 +4,11 @@ import { IUsersRepository } from "../../../repositories/IUsersRepositories";
 import { CreateUserService } from "../../createUser/CreateUserService";
 import { LoginUserService } from "../LoginUserService";
 
+interface IUserRequest {
+    email: string;
+    password: string;
+}
+
 describe("Login user", () => {
     let usersRepository: IUsersRepository;
     let loginUserService: LoginUserService;
@@ -26,5 +31,16 @@ describe("Login user", () => {
         const tokenJson = await loginUserService.execute(userData);
 
         expect(tokenJson).toHaveProperty("token");
+    });
+
+    it("must be able to reject a user", async () => {
+        const userRequestData: IUserRequest = {
+            email: "testIntegrationExisting3@test.com.br",
+            password: "Yu54321*",
+        };
+
+        await expect(loginUserService.execute(userRequestData)).rejects.toEqual(
+            new Error("Email or password is invalid!")
+        );
     });
 });

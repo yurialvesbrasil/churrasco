@@ -24,11 +24,11 @@ class LoginUserService {
     }
 
     //Compare bank password with password sent by user
-    if ((await bcrypt.compare(password, userExists.password)) && (userExists.id)) {
-      return { token: `Bearer ${this.generateToken(userExists.id)}` };
+    if ((await bcrypt.compare(password, userExists.password) == false) || (!userExists.id)) {
+      throw new Error("Email or password is invalid!");
     }
 
-    throw new Error("Email or password is invalid!");
+    return { token: `Bearer ${this.generateToken(userExists.id)}` };
   }
 }
 
