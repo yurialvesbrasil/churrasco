@@ -1,5 +1,5 @@
 import { User } from "../../entities/User";
-import { IUsersRepository } from "../IUsersRepositories";
+import { IUsersRepository } from "../IUsersRepository";
 import { v4 as uuid } from "uuid";
 
 class UsersRepositoryInMemory implements IUsersRepository {

@@ -11,11 +11,34 @@ generator client {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
+  id               String             @id @default(uuid())
+  name             String
+  email            String             @unique
+  password         String
+  createdAt        DateTime           @default(now()) @map("created_at")
+  SchedulesOnUsers SchedulesOnUsers[]
 
   @@map("users")
+}
+
+model Schedule {
+  id                      String             @id @default(uuid())
+  description             String
+  data                    DateTime
+  obs                     String
+  suggestedValParticipant Float              @map("suggested_val_participant")
+  additionForDrinks       Float              @map("addition_for_drinks")
+  SchedulesOnUsers        SchedulesOnUsers[]
+
+  @@map("schedules")
+}
+
+model SchedulesOnUsers {
+  user                  User     @relation(fields: [userId], references: [id])
+  userId                String   @map("user_id")
+  schedule              Schedule @relation(fields: [scheduleId], references: [id])
+  scheduleId            String   @map("schedule_id")
+  haveAdditionForDrinks Boolean  @map("have_addition_for_drinks")
+
+  @@id([userId, scheduleId])
 }

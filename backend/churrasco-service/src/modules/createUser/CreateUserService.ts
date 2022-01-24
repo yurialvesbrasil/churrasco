@@ -1,5 +1,5 @@
 import { User } from "../../entities/User";
-import { IUsersRepository } from "../../repositories/IUsersRepositories";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 import bcrypt from 'bcrypt';
 
 interface IUserRequest {
@@ -22,7 +22,7 @@ class CreateUserService {
     const salt = bcrypt.genSaltSync(10);
     const encryptedPassword: string = bcrypt.hashSync(password, salt);
 
-    const userCreate = User.create({ name, email, password:encryptedPassword });
+    const userCreate = User.create({ name, email, password: encryptedPassword });
     const user = await this.usersRepository.create(userCreate);
     return user;
   }

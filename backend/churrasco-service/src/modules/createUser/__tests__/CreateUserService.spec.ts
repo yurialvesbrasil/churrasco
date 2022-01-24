@@ -1,6 +1,6 @@
 import { User } from "../../../entities/User";
 import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
-import { IUsersRepository } from "../../../repositories/IUsersRepositories";
+import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { CreateUserService } from "../CreateUserService";
 
 describe("Create user", () => {

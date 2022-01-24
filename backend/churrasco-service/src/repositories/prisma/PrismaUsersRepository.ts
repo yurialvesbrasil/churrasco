@@ -1,6 +1,6 @@
 import { prisma } from "../../database/client";
 import { User } from "../../entities/User";
-import { IUsersRepository } from "../IUsersRepositories";
+import { IUsersRepository } from "../IUsersRepository";
 
 class PrismaUsersRepository implements IUsersRepository {
   async exists(email: string): Promise<User | null> {

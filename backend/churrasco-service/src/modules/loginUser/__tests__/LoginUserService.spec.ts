@@ -1,6 +1,6 @@
 import { User } from "../../../entities/User";
 import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
-import { IUsersRepository } from "../../../repositories/IUsersRepositories";
+import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { CreateUserService } from "../../createUser/CreateUserService";
 import { LoginUserService } from "../LoginUserService";
 
@@ -35,7 +35,7 @@ describe("Login user", () => {
 
     it("must be able to reject a user", async () => {
         const userRequestData: IUserRequest = {
-            email: "testIntegrationExisting3@test.com.br",
+            email: "testIntegrationExisting@test.com.br",
             password: "Yu54321*",
         };
 
