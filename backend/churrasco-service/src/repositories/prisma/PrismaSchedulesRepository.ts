@@ -4,11 +4,11 @@ import { ISchedulesRepository } from "../ISchedulesRepository";
 
 class PrismaSchedulesRepository implements ISchedulesRepository {
 
-  async create({ description, data, obs, suggestedValParticipant, additionForDrinks }: Schedule): Promise<Schedule> {
+  async create({ description, dateBarbecue, obs, suggestedValParticipant, additionForDrinks }: Schedule): Promise<Schedule> {
     const schedule = await prisma.schedule.create({
       data: {
         description,
-        data,
+        dateBarbecue,
         obs,
         suggestedValParticipant,
         additionForDrinks

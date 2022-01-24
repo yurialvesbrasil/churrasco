@@ -13,7 +13,7 @@ CREATE TABLE "users" (
 CREATE TABLE "schedules" (
     "id" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "data" TIMESTAMP(3) NOT NULL,
+    "date_barbecue" TIMESTAMP(3) NOT NULL,
     "obs" TEXT NOT NULL,
     "suggested_val_participant" DOUBLE PRECISION NOT NULL,
     "addition_for_drinks" DOUBLE PRECISION NOT NULL,
