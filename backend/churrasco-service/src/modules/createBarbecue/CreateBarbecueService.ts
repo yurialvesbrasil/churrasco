@@ -4,7 +4,7 @@ import { ISchedulesRepository } from "../../repositories/ISchedulesRepository";
 interface IBarbecueRequest {
     description: string;
     dateBarbecue: Date;
-    obs?: string;
+    obs?: string | undefined;
     suggestedValParticipant: number;
     additionForDrinks: number;
 }

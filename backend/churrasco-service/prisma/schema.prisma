@@ -25,7 +25,7 @@ model Schedule {
   id                      String             @id @default(uuid())
   description             String
   dateBarbecue            DateTime           @map("date_barbecue")
-  obs                     String
+  obs                     String        
   suggestedValParticipant Float              @map("suggested_val_participant")
   additionForDrinks       Float              @map("addition_for_drinks")
   SchedulesOnUsers        SchedulesOnUsers[]

@@ -4,7 +4,7 @@ class Schedule {
     id?: string;
     description: string;
     dateBarbecue: Date;
-    obs?: string;
+    obs?: string | undefined;
     suggestedValParticipant: number;
     additionForDrinks: number;
     schedulesOnUsers?: ScheduleOnUser[];

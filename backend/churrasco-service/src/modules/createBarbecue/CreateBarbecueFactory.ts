@@ -1,10 +1,10 @@
-import { PrismaBarbecueRepository } from "../../repositories/prisma/PrismaBarbecueRepository";
+import { PrismaSchedulesRepository } from "../../repositories/prisma/PrismaSchedulesRepository";
 import { CreateBarbecueController } from "./CreateBarbecueController";
 import { CreateBarbecueService } from "./CreateBarbecueService";
 
 export const createBarbecueFactory = () => {
-  const barbecueRepository = new PrismaBarbecueRepository();
-  const createBarbecueService = new CreateBarbecueService(barbecueRepository);
+  const schedulesRepository = new PrismaSchedulesRepository();
+  const createBarbecueService = new CreateBarbecueService(schedulesRepository);
   const createBarbecueController = new CreateBarbecueController(createBarbecueService);
   return createBarbecueController;
 };

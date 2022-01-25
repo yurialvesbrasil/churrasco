@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateChurrascoService } from "./CreateChurrascoService";
+import { CreateBarbecueService } from "./CreateBarbecueService";
 import * as yup from 'yup';
 
 class CreateBarbecueController {
@@ -15,7 +15,7 @@ class CreateBarbecueController {
         //Valid input data
         const schema = yup.object().shape({
             description: yup.string().required('No description provided.').min(3, 'Description must be at least 3 characters long.'),
-            date_barbecue: yup.date().required("No date provided.").min(yup.ref('date'), ({ min }) => `Date needs to be before ${formatDate(new Date())}!!`,),
+            date_barbecue: yup.date().required("No date provided.").min(new Date(), ({ min }) => `Date needs to be before ${formatDate(new Date())}!!`,),
             suggested_val_participant: yup.number().required('No suggested value provided.').min(1, 'Suggested value must be at least 1.'),
             addition_for_drinks: yup.number().required('No addition for drinks provided.').min(0, 'Addition for drinks must be at least 0.'),
         });
@@ -26,7 +26,7 @@ class CreateBarbecueController {
             throw new Error((error as Error).message);
         }
 
-        const barbecue = await this.createBarbecue.execute({ description, dateBarbecue: date_barbecue, obs, suggestedValParticipant:suggested_val_participant, additionForDrinks:addition_for_drinks });
+        const barbecue = await this.createBarbecue.execute({ description, dateBarbecue: date_barbecue, obs, suggestedValParticipant: suggested_val_participant, additionForDrinks: addition_for_drinks });
 
         return response.json(barbecue);
     }

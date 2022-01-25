@@ -9,7 +9,7 @@ class PrismaSchedulesRepository implements ISchedulesRepository {
       data: {
         description,
         dateBarbecue,
-        obs,
+        obs: (obs != null) ? obs : "",
         suggestedValParticipant,
         additionForDrinks
       },
