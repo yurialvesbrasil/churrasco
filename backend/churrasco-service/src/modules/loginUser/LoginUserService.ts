@@ -2,7 +2,7 @@ import { IUsersRepository } from "../../repositories/IUsersRepository";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export interface IUserRequest {
+export interface ILoginUserRequest {
   email: string;
   password: string;
 }
@@ -16,15 +16,15 @@ class LoginUserService {
     });
   }
 
-  async execute({ email, password }: IUserRequest) {
+  async execute({ email, password }: ILoginUserRequest) {
     const userExists = await this.usersRepository.exists(email);
 
-    if (!userExists) {
+    if ((!userExists) || (!userExists.id)) {
       throw new Error("Email or password is invalid!");
     }
 
     //Compare bank password with password sent by user
-    if ((await bcrypt.compare(password, userExists.password ?? "") == false) || (!userExists.id)) {
+    if (await bcrypt.compare(password, userExists.password ?? "") == false) {
       throw new Error("Email or password is invalid!");
     }
 

@@ -1,8 +1,8 @@
-import { User } from "../../../entities/User";
+
 import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { CreateUserService, ICreateUserRequest } from "../../createUser/CreateUserService";
-import { IUserRequest, LoginUserService } from "../LoginUserService";
+import { ILoginUserRequest, LoginUserService } from "../LoginUserService";
 
 describe("Login user", () => {
     let usersRepository: IUsersRepository;
@@ -22,7 +22,7 @@ describe("Login user", () => {
             password: "Yu23145*",
         };
 
-        const userRequestData: IUserRequest = {
+        const userRequestData: ILoginUserRequest = {
             email: "testIntegrationExisting@test.com.br",
             password: "Yu23145*",
         };
@@ -34,7 +34,7 @@ describe("Login user", () => {
     });
 
     it("must be able to reject a user", async () => {
-        const userRequestData: IUserRequest = {
+        const userRequestData: ILoginUserRequest = {
             email: "testIntegrationExisting@test.com.br",
             password: "Yu54321*",
         };
