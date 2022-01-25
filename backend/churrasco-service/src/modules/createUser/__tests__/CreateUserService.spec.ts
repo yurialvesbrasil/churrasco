@@ -1,7 +1,7 @@
 import { User } from "../../../entities/User";
 import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
-import { CreateUserService } from "../CreateUserService";
+import { CreateUserService, ICreateUserRequest } from "../CreateUserService";
 
 describe("Create user", () => {
   let usersRepository: IUsersRepository;
@@ -13,7 +13,7 @@ describe("Create user", () => {
   });
 
   it("should be able to create a new user", async () => {
-    const userData: User = {
+    const userData: ICreateUserRequest = {
       name: "Test Name",
       email: "test@test.com.br",
       password: "12345678",
@@ -26,7 +26,7 @@ describe("Create user", () => {
   });
 
   it("should not be able to create an existing user", async () => {
-    const userData: User = {
+    const userData: ICreateUserRequest = {
       name: "Test Existing Name",
       email: "testexisting@test.com.br",
       password: "12345678",

@@ -2,7 +2,7 @@ import { IUsersRepository } from "../../repositories/IUsersRepository";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-interface IUserRequest {
+export interface IUserRequest {
   email: string;
   password: string;
 }
@@ -24,7 +24,7 @@ class LoginUserService {
     }
 
     //Compare bank password with password sent by user
-    if ((await bcrypt.compare(password, userExists.password) == false) || (!userExists.id)) {
+    if ((await bcrypt.compare(password, userExists.password ?? "") == false) || (!userExists.id)) {
       throw new Error("Email or password is invalid!");
     }
 

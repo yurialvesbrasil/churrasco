@@ -1,5 +1,6 @@
 import { prisma } from "../../database/client";
 import { User } from "../../entities/User";
+import { ICreateUserRequest } from "../../modules/createUser/CreateUserService";
 import { IUsersRepository } from "../IUsersRepository";
 
 class PrismaUsersRepository implements IUsersRepository {
@@ -13,7 +14,7 @@ class PrismaUsersRepository implements IUsersRepository {
     return !!user ? user : null;
   }
 
-  async create({ name, email, password }: User): Promise<User> {
+  async create({ name, email, password }: ICreateUserRequest): Promise<User> {
     const user = await prisma.user.create({
       data: {
         name,

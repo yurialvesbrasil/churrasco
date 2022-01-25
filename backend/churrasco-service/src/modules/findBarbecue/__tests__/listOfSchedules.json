@@ -1,0 +1,18 @@
+[
+    {
+        "id": "b96we254-1659-412d-8b73-7b743434f586",
+        "description": "Churrasco da Fê",
+        "dateBarbecue": "2018-09-12T18:00:02.363Z",
+        "obs": "",
+        "suggestedValParticipant": 35.5,
+        "additionForDrinks": 20
+    },
+    {
+        "id": "b9dfe2254-1459-490d-8b73-7b743c04586",
+        "description": "Churrasco da Rafaella",
+        "dateBarbecue": "2018-09-13T17:41:02.363Z",
+        "obs": "",
+        "suggestedValParticipant": 135.5,
+        "additionForDrinks": 10
+    }
+]

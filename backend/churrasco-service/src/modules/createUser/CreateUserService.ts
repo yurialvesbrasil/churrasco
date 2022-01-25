@@ -2,7 +2,7 @@ import { User } from "../../entities/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import bcrypt from 'bcrypt';
 
-interface IUserRequest {
+export interface ICreateUserRequest {
   name: string;
   email: string;
   password: string;
@@ -11,7 +11,7 @@ interface IUserRequest {
 class CreateUserService {
   constructor(private usersRepository: IUsersRepository) { }
 
-  async execute({ name, email, password }: IUserRequest) {
+  async execute({ name, email, password }: ICreateUserRequest) {
     const userAlreadyExists = await this.usersRepository.exists(email);
 
     if (userAlreadyExists) {
@@ -24,6 +24,9 @@ class CreateUserService {
 
     const userCreate = User.create({ name, email, password: encryptedPassword });
     const user = await this.usersRepository.create(userCreate);
+
+    delete user.password;
+
     return user;
   }
 }

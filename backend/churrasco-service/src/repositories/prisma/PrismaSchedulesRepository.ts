@@ -17,6 +17,13 @@ class PrismaSchedulesRepository implements ISchedulesRepository {
 
     return schedule;
   }
+
+  async findAll(): Promise<Schedule[]> {
+    const schedules = await prisma.schedule.findMany();
+
+    return schedules;
+  }
+
 }
 
 export { PrismaSchedulesRepository };

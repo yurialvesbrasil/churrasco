@@ -1,13 +1,8 @@
 import { User } from "../../../entities/User";
 import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
-import { CreateUserService } from "../../createUser/CreateUserService";
-import { LoginUserService } from "../LoginUserService";
-
-interface IUserRequest {
-    email: string;
-    password: string;
-}
+import { CreateUserService, ICreateUserRequest } from "../../createUser/CreateUserService";
+import { IUserRequest, LoginUserService } from "../LoginUserService";
 
 describe("Login user", () => {
     let usersRepository: IUsersRepository;
@@ -21,14 +16,19 @@ describe("Login user", () => {
     });
 
     it("should be able to login a user", async () => {
-        const userData: User = {
-            name: "Test Name",
+        const userData: ICreateUserRequest = {
+            name: "John Doe",
+            email: "testIntegrationExisting@test.com.br",
+            password: "Yu23145*",
+        };
+
+        const userRequestData: IUserRequest = {
             email: "testIntegrationExisting@test.com.br",
             password: "Yu23145*",
         };
 
         const user = await createUserService.execute(userData);
-        const tokenJson = await loginUserService.execute(userData);
+        const tokenJson = await loginUserService.execute(userRequestData);
 
         expect(tokenJson).toHaveProperty("token");
     });
@@ -38,6 +38,8 @@ describe("Login user", () => {
             email: "testIntegrationExisting@test.com.br",
             password: "Yu54321*",
         };
+
+        await loginUserService.execute(userRequestData);
 
         await expect(loginUserService.execute(userRequestData)).rejects.toEqual(
             new Error("Email or password is invalid!")
