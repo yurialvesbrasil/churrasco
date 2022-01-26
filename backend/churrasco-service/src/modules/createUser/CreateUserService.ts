@@ -25,7 +25,7 @@ class CreateUserService {
     const userCreate = User.create({ name, email, password: encryptedPassword });
     const user = await this.usersRepository.create(userCreate);
 
-    delete user.password;
+    //delete user.password;
 
     return user;
   }

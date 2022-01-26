@@ -28,7 +28,7 @@ class CreateUserController {
 
     const user = await this.createUser.execute({ name, email, password });
 
-    return response.json(user);
+    return response.json({"id": user.id, "name": user.name, "email": user.email});
   }
 }
 

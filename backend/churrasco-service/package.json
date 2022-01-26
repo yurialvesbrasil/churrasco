@@ -25,6 +25,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --exit-child src/server.ts",
+    "restart":"yarn prisma migrate reset",
     "test": "jest"
   },
   "dependencies": {

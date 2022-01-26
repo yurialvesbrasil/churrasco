@@ -30,6 +30,7 @@ describe("Login user", () => {
         const user = await createUserService.execute(userData);
         const tokenJson = await loginUserService.execute(userRequestData);
 
+        expect(user).toHaveProperty("id");
         expect(tokenJson).toHaveProperty("token");
     });
 
@@ -39,10 +40,15 @@ describe("Login user", () => {
             password: "Yu54321*",
         };
 
-        await loginUserService.execute(userRequestData);
+        expect.assertions(1);
 
-        await expect(loginUserService.execute(userRequestData)).rejects.toEqual(
-            new Error("Email or password is invalid!")
-        );
+        try {
+            await loginUserService.execute(userRequestData);
+        } catch (e) {
+            expect(e).toEqual(
+                new Error("Email or password is invalid!")
+            );
+        }
+
     });
 });
