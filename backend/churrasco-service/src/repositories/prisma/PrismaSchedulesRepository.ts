@@ -1,17 +1,30 @@
 import { prisma } from "../../database/client";
 import { Schedule } from "../../entities/Schedule";
+import { User } from "../../entities/User";
 import { ISchedulesRepository } from "../ISchedulesRepository";
 
 class PrismaSchedulesRepository implements ISchedulesRepository {
 
-  async create({ description, dateBarbecue, obs, suggestedValParticipant, additionForDrinks }: Schedule): Promise<Schedule> {
+  async findByIdSchedule(idSchedule: string): Promise<Schedule | null> {
+    const schedule = await prisma.schedule.findUnique({
+      where: {
+        id: idSchedule,
+      },
+    });
+    return !!schedule ? schedule : null;
+  }
+
+  async create({ description, dateBarbecue, obs, suggestedValParticipant, additionForDrinksVal }: Schedule): Promise<Schedule> {
+
+    //const users: User[] = await prisma.user.findMany();
+
     const schedule = await prisma.schedule.create({
       data: {
         description,
         dateBarbecue,
         obs: (obs != null) ? obs : "",
         suggestedValParticipant,
-        additionForDrinks
+        additionForDrinksVal,
       },
     });
 
@@ -23,6 +36,7 @@ class PrismaSchedulesRepository implements ISchedulesRepository {
 
     return schedules;
   }
+
 
 }
 

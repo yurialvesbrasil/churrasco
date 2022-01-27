@@ -11,34 +11,31 @@ generator client {
 }
 
 model User {
-  id               String             @id @default(uuid())
-  name             String
-  email            String             @unique
-  password         String
-  createdAt        DateTime           @default(now()) @map("created_at")
-  SchedulesOnUsers SchedulesOnUsers[]
-
-  @@map("users")
+  id        String         @id @default(uuid())
+  name      String
+  email     String         @unique
+  password  String
+  createdAt DateTime       @default(now()) @map("created_at")
+  schedules UserSchedule[]
 }
 
-model Schedule {
-  id                      String             @id @default(uuid())
-  description             String
-  dateBarbecue            DateTime           @map("date_barbecue")
-  obs                     String        
-  suggestedValParticipant Float              @map("suggested_val_participant")
-  additionForDrinks       Float              @map("addition_for_drinks")
-  SchedulesOnUsers        SchedulesOnUsers[]
-
-  @@map("schedules")
-}
-
-model SchedulesOnUsers {
+model UserSchedule {
+  id                    String   @default(uuid())
   user                  User     @relation(fields: [userId], references: [id])
-  userId                String   @map("user_id")
   schedule              Schedule @relation(fields: [scheduleId], references: [id])
-  scheduleId            String   @map("schedule_id")
+  userId                String
+  scheduleId            String
   haveAdditionForDrinks Boolean  @map("have_addition_for_drinks")
 
   @@id([userId, scheduleId])
+}
+
+model Schedule {
+  id                      String         @id @default(uuid())
+  description             String
+  dateBarbecue            DateTime       @map("date_barbecue")
+  obs                     String
+  suggestedValParticipant Float          @map("suggested_val_participant")
+  additionForDrinksVal    Float          @map("addition_for_drinks_val")
+  participants            UserSchedule[]
 }

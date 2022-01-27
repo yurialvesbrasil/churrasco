@@ -13,7 +13,7 @@ require("dotenv").config({
 class CustomEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config);
-    this.schema = `code_schema_${uuid()}`;
+    this.schema = `${uuid()}`;
     console.log("schemas", this.schema);
     this.connectionString = `${process.env.DATABASE_URL}${this.schema}`;
   }

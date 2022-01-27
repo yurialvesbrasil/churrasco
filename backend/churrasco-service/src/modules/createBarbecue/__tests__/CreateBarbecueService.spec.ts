@@ -19,7 +19,7 @@ describe("Create barbecue", () => {
       dateBarbecue: new Date(),
       obs: "Poderá haver novas contribuições para bebidas durante o evento.",
       suggestedValParticipant: 35.5,
-      additionForDrinks: 20.5
+      additionForDrinksVal: 20.5
     };
 
     const barbecue = await createBarbecueService.execute(scheduleData);

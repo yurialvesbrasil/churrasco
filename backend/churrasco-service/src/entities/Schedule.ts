@@ -1,4 +1,4 @@
-import { ScheduleOnUser } from "./ScheduleOnUser";
+import { UserSchedule } from "./UserSchedule";
 
 class Schedule {
     id?: string;
@@ -6,23 +6,23 @@ class Schedule {
     dateBarbecue: Date;
     obs?: string | undefined;
     suggestedValParticipant: number;
-    additionForDrinks: number;
-    schedulesOnUsers?: ScheduleOnUser[];
+    additionForDrinksVal: number;
+    participants?: UserSchedule[];
 
-    private constructor({ id, description, dateBarbecue, obs, suggestedValParticipant, additionForDrinks, schedulesOnUsers }: Schedule) {
+    private constructor({ id, description, dateBarbecue, obs, suggestedValParticipant, additionForDrinksVal, participants }: Schedule) {
         return Object.assign(this, {
             id,
             description,
             dateBarbecue,
             obs,
             suggestedValParticipant,
-            additionForDrinks,
-            schedulesOnUsers
+            additionForDrinksVal,
+            participants
         });
     }
 
-    static create({ id, description, dateBarbecue, obs, suggestedValParticipant, additionForDrinks, schedulesOnUsers }: Schedule) {
-        const schedule = new Schedule({ id, description, dateBarbecue, obs, suggestedValParticipant, additionForDrinks, schedulesOnUsers });
+    static create({ id, description, dateBarbecue, obs, suggestedValParticipant, additionForDrinksVal, participants }: Schedule) {
+        const schedule = new Schedule({ id, description, dateBarbecue, obs, suggestedValParticipant, additionForDrinksVal, participants });
         return schedule;
     }
 }

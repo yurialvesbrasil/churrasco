@@ -1,4 +1,4 @@
-import { ScheduleOnUser } from "./ScheduleOnUser";
+import { UserSchedule } from "./UserSchedule";
 
 class User {
   id?: string;
@@ -6,19 +6,19 @@ class User {
   email: string;
   password: string;
   createdAt?: Date;
-  schedulesOnUsers?: ScheduleOnUser[];
+  schedules?: UserSchedule[];
 
-  private constructor({ name, email, password, schedulesOnUsers }: User) {
+  private constructor({ name, email, password, schedules }: User) {
     return Object.assign(this, {
       name,
       email,
       password,
-      schedulesOnUsers
+      schedules
     });
   }
 
-  static create({ name, email, password, schedulesOnUsers }: User) {
-    const user = new User({ name, email, password, schedulesOnUsers });
+  static create({ name, email, password, schedules }: User) {
+    const user = new User({ name, email, password, schedules });
     return user;
   }
 }

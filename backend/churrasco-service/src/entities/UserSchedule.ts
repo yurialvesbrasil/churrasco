@@ -1,21 +1,21 @@
 import { Schedule } from "./Schedule";
 import { User } from "./User";
 
-class ScheduleOnUser {
+class UserSchedule {
     user: User;
     schedule: Schedule;
 
-    private constructor({ user, schedule }: ScheduleOnUser) {
+    private constructor({ user, schedule }: UserSchedule) {
         return Object.assign(this, {
             user,
             schedule
         });
     }
 
-    static create({ user, schedule }: ScheduleOnUser) {
-        const schedulesOnUser = new ScheduleOnUser({ user, schedule });
+    static create({ user, schedule }: UserSchedule) {
+        const schedulesOnUser = new UserSchedule({ user, schedule });
         return schedulesOnUser;
     }
 }
 
-export { ScheduleOnUser };
+export { UserSchedule };

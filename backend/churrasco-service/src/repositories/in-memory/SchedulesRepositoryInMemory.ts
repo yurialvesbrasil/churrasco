@@ -22,6 +22,11 @@ class SchedulesRepositoryInMemory implements ISchedulesRepository {
         return schedules;
     }
 
+    async findByIdSchedule(idSchedule: string): Promise<Schedule | null> {
+        const schedule = this.schedules.find((schedule) => schedule.id === idSchedule);
+        return schedule != undefined ? schedule : null;
+    }
+
 }
 
 export { SchedulesRepositoryInMemory };
