@@ -2,7 +2,8 @@
 import { UsersRepositoryInMemory } from "../../../repositories/in-memory/UsersRepositoryInMemory";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { CreateUserService, ICreateUserRequest } from "../../createUser/CreateUserService";
-import { ILoginUserRequest, LoginUserService } from "../LoginUserService";
+import { ILoginUserRequest } from "../LoginUserController";
+import { LoginUserService } from "../LoginUserService";
 
 describe("Login user", () => {
     let usersRepository: IUsersRepository;

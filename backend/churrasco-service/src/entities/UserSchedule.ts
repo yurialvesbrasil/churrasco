@@ -2,18 +2,20 @@ import { Schedule } from "./Schedule";
 import { User } from "./User";
 
 class UserSchedule {
-    user: User;
-    schedule: Schedule;
+    userId: String;
+    scheduleId: String;
+    haveAdditionForDrinks: boolean;
 
-    private constructor({ user, schedule }: UserSchedule) {
+    private constructor({ userId, scheduleId, haveAdditionForDrinks }: UserSchedule) {
         return Object.assign(this, {
-            user,
-            schedule
+            userId,
+            scheduleId,
+            haveAdditionForDrinks
         });
     }
 
-    static create({ user, schedule }: UserSchedule) {
-        const schedulesOnUser = new UserSchedule({ user, schedule });
+    static create({ userId, scheduleId, haveAdditionForDrinks }: UserSchedule) {
+        const schedulesOnUser = new UserSchedule({ userId, scheduleId, haveAdditionForDrinks });
         return schedulesOnUser;
     }
 }

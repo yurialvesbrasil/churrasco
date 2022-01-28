@@ -1,11 +1,8 @@
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { ILoginUserRequest } from "./LoginUserController";
 
-export interface ILoginUserRequest {
-  email: string;
-  password: string;
-}
 
 class LoginUserService {
   constructor(private usersRepository: IUsersRepository) { }

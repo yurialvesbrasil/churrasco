@@ -13,7 +13,7 @@ require("dotenv").config({
 class CustomEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config);
-    this.schema = `${uuid()}`;
+    this.schema = `teste-${Math.random() * 1000}`;
     console.log("schemas", this.schema);
     this.connectionString = `${process.env.DATABASE_URL}${this.schema}`;
   }
@@ -23,7 +23,7 @@ class CustomEnvironment extends NodeEnvironment {
     this.global.process.env.DATABASE_URL = this.connectionString;
 
     // Rodar as migrations
-    execSync(`${prismaCli} migrate dev`);
+    execSync(`${prismaCli} migrate dev --preview-feature`);
   }
 
   async teardown() {
@@ -35,6 +35,8 @@ class CustomEnvironment extends NodeEnvironment {
     await client.query(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`);
     await client.end();
   }
+
+
 }
 
 module.exports = CustomEnvironment;

@@ -19,7 +19,7 @@ describe("Add Participant in Barbecue", () => {
         addParticipantService = new AddParticipantService(schedulesRepository, usersRepository, userSchedulesRepository);
     });
 
-    it("should be possible to add a participant in a barbecue", async () => {
+    it("should be possible to add a participant with additional for drinks in a barbecue", async () => {
         const user = await usersRepository.create({
             name: "Fernanda",
             email: "fernanda@hotmail.com",
@@ -40,7 +40,6 @@ describe("Add Participant in Barbecue", () => {
         }
 
         expect(isAddParticipante).toEqual(true);
-
     });
 
 });

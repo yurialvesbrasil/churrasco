@@ -11,6 +11,18 @@ class UserScheduleRepositoryInMemory implements IUserSchedulesRepository {
         this.userSchedules.push(userSchedule);
         return true;
     }
+
+    async existUserInSchedule(userSchedule: UserSchedule): Promise<UserSchedule | null> {
+        const result = this.userSchedules.find((userScheduleVar, i) => {
+            if ((userSchedule.userId === userScheduleVar.userId)
+                && (userSchedule.scheduleId === userScheduleVar.userId)
+                && (userScheduleVar.haveAdditionForDrinks === userSchedule.haveAdditionForDrinks))
+                return true;
+        });
+
+        return result != undefined ? result : null;
+
+    }
 }
 
 export { UserScheduleRepositoryInMemory };

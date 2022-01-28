@@ -2,6 +2,12 @@ import { Request, Response } from "express";
 import { LoginUserService } from "./LoginUserService";
 import * as yup from 'yup';
 
+
+export interface ILoginUserRequest {
+  email: string;
+  password: string;
+}
+
 class LoginUserController {
     constructor(private loginUser: LoginUserService) { }
 

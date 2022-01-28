@@ -25,11 +25,12 @@ class AddParticipantService {
         //Localiza schedule
         const schedule: Schedule | null = await this.schedulesRepository.findByIdSchedule(idSchedule);
 
-        if (user && schedule) {
+        if ((user != null) && (schedule != null)) {
             const barbecue = await this.userScheduleRepository.create({
-                user: user,
-                schedule: schedule,
-            }, haveAdditionForDrinks);
+                userId: user.id as string,
+                scheduleId: schedule.id as string,
+                haveAdditionForDrinks: haveAdditionForDrinks
+            });
             return barbecue;
         } else {
             throw new Error("Participant or barbecue not found!");
